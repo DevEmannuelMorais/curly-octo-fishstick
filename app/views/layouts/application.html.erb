@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ecommerce</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+<div class="ui menu">
+  <div class="ui container">
+    <a href="/" class="header item">
+      Ecommerce
+    </a>
+    <a href="/" class="item">Home</a>
+    <a href="/products" class="item">Products</a>
+    <a href="/categories" class="item">Categories</a>
+    <div class="right menu">
+      <% if user_signed_in? %>
+        <a href="/users/edit" class="item"><%= current_user.email %></a>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "item" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "item" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: "item" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="ui container" style="margin-top: 20px;">
+  <% if notice %>
+    <div class="ui message positive"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+    <div class="ui message negative"><%= alert %></div>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
+</html>

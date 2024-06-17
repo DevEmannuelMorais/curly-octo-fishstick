@@ -1,0 +1,18 @@
+<div class="ui container">
+  <h1 class="ui header">Products</h1>
+  <div class="ui grid">
+    <% @products.each do |product| %>
+      <div class="four wide column">
+        <div class="ui card">
+          <div class="content">
+            <div class="header"><%= product.name %></div>
+            <div class="description"><%= product.description %></div>
+          </div>
+          <div class="extra content">
+            <span class="right floated"><%= number_to_currency(product.price) %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
